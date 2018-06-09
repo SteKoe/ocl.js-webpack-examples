@@ -16,3 +16,4 @@ element.appendChild(require('./examples/004'));
 element.appendChild(require('./examples/005'));
 element.appendChild(require('./examples/006'));
 element.appendChild(require('./examples/007'));
+element.appendChild(require('./examples/008'));

@@ -9,6 +9,8 @@ const context = `
 var person = new Person(29);
 var car = new Car('red');
 car.owner = person;
+
+1 >= 2
 `;
 
 const fn = function () {

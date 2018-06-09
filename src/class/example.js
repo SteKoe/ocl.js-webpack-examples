@@ -15,11 +15,13 @@ export default class Example {
 
         const elemPreJs = document.createElement('pre');
         const elemCodeJs = document.createElement('code');
-        elemCodeJs.innerText = this.ctx.trim();
+        elemCodeJs.className = 'javascript';
+        elemCodeJs.innerText = this.ctx.trim().replace(/[ ]+/g, ' ');
         elemPreJs.appendChild(elemCodeJs);
 
         const elemPreOcl = document.createElement('pre');
         const elemCodeOcl = document.createElement('code');
+        elemCodeOcl.className = 'ocl';
         elemCodeOcl.innerText = this.oclExpression.trim();
         elemPreOcl.appendChild(elemCodeOcl);
 

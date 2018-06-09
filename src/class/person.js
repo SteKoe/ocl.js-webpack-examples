@@ -3,5 +3,7 @@ export default class Person {
         this.typeName = 'Person';
         this.age = age;
         this.fleet = [];
+        this.jobs = [];
+        this.parents = [];
     }
 }
