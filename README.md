@@ -8,4 +8,6 @@
 
 - Build the project using `npm run build` or run the project in development mode with the watcher using `npm run develop`.
 
-- Start the example page using `npm run start` or `yarn start`
+- Start the example page using `npm run start`.
+
+- Navigate to `http://localhost:8080`
