@@ -24,6 +24,7 @@
     "webpack-cli": "^3.0.3"
   },
   "dependencies": {
+    "@stekoe/ocl.js": "^1.0.0",
     "highlight.js": "^9.12.0"
   }
 }
