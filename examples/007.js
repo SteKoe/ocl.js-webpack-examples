@@ -1,8 +1,8 @@
 import OclEngine from "@stekoe/ocl.js";
-import Person from "../class/person";
-import Example from "../class/example";
-import Car from "../class/car";
-import oclExpression from "./007.ocl";
+import Person from "./class/person.js";
+import Example from "./class/example.js";
+import Car from "./class/car.js";
+import oclExpression from "./007.ocl?raw";
 
 const title = 'A person should own a red, green and blue car, but does not own a blue one.';
 const context = `
@@ -23,11 +23,11 @@ const fn = function () {
     person.fleet.push(greenCar);
 
     return new OclEngine()
-        .addOclExpression(this.oclExpression)
+        .addOclExpression(oclExpression)
         .evaluate(person);
 };
 
-module.exports = Example.builder()
+export default () => Example.builder()
     .title(title)
     .context(context)
     .oclExpression(oclExpression)

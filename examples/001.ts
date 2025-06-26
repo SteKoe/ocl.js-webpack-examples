@@ -1,8 +1,9 @@
 import OclEngine from "@stekoe/ocl.js";
-import Person from "../class/person";
-import Example from "../class/example";
-import Car from "../class/car";
-import oclExpression from "./001.ocl";
+
+import Person from "./class/person";
+import Example from "./class/example.tsx";
+import Car from "./class/car";
+import oclExpression from "./001.ocl?raw";
 
 const title = 'A vehicle owner has to be at least 18 years old.';
 const context = `
@@ -19,11 +20,11 @@ const fn = function () {
     car.owner = person;
 
     return new OclEngine()
-        .addOclExpression(this.oclExpression)
+        .addOclExpression(oclExpression)
         .evaluate(car);
 };
 
-module.exports = Example.builder()
+export default () => Example.builder()
     .title(title)
     .context(context)
     .oclExpression(oclExpression)

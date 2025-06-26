@@ -1,4 +1,4 @@
-import Example from "./example";
+import Example from "./example.tsx";
 
 export default class ExampleBuilder {
     constructor() {
@@ -51,7 +51,7 @@ export default class ExampleBuilder {
     }
 
     /**
-     * @returns {Example}
+     * @returns {JSX.Element}
      */
     build() {
         return this.example.run.apply(this.example);

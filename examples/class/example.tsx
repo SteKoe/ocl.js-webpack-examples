@@ -1,6 +1,15 @@
-import ExampleBuilder from "./exampleBuilder";
+import ExampleBuilder from "./exampleBuilder.js";
 
 export default class Example {
+
+    public title: string = "";
+    public ctx: string = "";
+    public oclExpression: string = "";
+    public expected: boolean | undefined;
+    public fn: Function = () => {
+        return {getResult: () => false, getNamesOfFailedInvs: () => []}
+    };
+
     /**
      * @returns {ExampleBuilder}
      */
@@ -9,10 +18,6 @@ export default class Example {
     }
 
     run() {
-        const elemTitle = document.createElement('h5');
-        elemTitle.onclick = () => this._toggleClass(elemTitle, 'visible');
-        elemTitle.innerHTML = this.title.trim();
-
         const elemPreJs = document.createElement('pre');
         const elemCodeJs = document.createElement('code');
         elemCodeJs.className = 'javascript';
@@ -32,7 +37,7 @@ export default class Example {
             elemResult.innerHTML = `The result of the above rule should ${result(this.expected)} and does ${result(actual)}.`;
 
             if(this.expected === false && actual === false) {
-                const failedInvs = resultObject.getNamesOfFailedInvs().filter(name => name !== 'anonymous');
+                const failedInvs = resultObject.getNamesOfFailedInvs().filter((name: string) => name !== 'anonymous');
 
                 if(failedInvs.length > 0) {
                     elemResult.innerHTML += ` The following invariants have failed: ${failedInvs.join(', ')}`
@@ -46,20 +51,24 @@ export default class Example {
         elemDivCodeWrapper.appendChild(elemResult);
 
         const elemDivExampleWrapper = document.createElement('div');
-        elemDivExampleWrapper.appendChild(elemTitle);
         elemDivExampleWrapper.appendChild(elemDivCodeWrapper);
 
-        return elemDivExampleWrapper;
+        return (
+            <>
+                <h2>{this.title}</h2>
+                <div dangerouslySetInnerHTML={{__html: elemDivExampleWrapper.outerHTML}}/>
+            </>
+        );
 
-        function result(boolean) {
+        function result(boolean: boolean) {
             const clazz = boolean ? 'pass' : 'not-pass';
 
             return `<strong class="status ${clazz}">${boolean ? 'PASS' : 'NOT PASS'}</strong>`
         }
     }
 
-    _toggleClass(elem, className) {
-        var currentClassName = elem.className;
+    _toggleClass(elem: Element, className: string) {
+        let currentClassName = elem.className;
         if (currentClassName.indexOf(className) !== -1) {
             currentClassName = currentClassName.replace(className, '');
         } else {

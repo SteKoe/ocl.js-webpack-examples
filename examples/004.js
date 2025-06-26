@@ -1,7 +1,7 @@
 import OclEngine from "@stekoe/ocl.js";
-import Person from "../class/person";
-import Example from "../class/example";
-import oclExpression from "./004.ocl";
+import Person from "./class/person.js";
+import Example from "./class/example.js";
+import oclExpression from "./004.ocl?raw";
 
 const title = 'A person younger than 18 years old owns no cars.';
 const context = `var person = new Person(6);`;
@@ -10,11 +10,11 @@ const fn = function () {
     const person = new Person(6);
 
     return new OclEngine()
-        .addOclExpression(this.oclExpression)
+        .addOclExpression(oclExpression)
         .evaluate(person);
 };
 
-module.exports = Example.builder()
+export default () => Example.builder()
     .title(title)
     .context(context)
     .oclExpression(oclExpression)

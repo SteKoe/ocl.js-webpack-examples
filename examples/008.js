@@ -1,8 +1,8 @@
 import OclEngine from "@stekoe/ocl.js";
-import Person from "../class/person";
-import Example from "../class/example";
-import oclExpression from "./008.ocl";
-import { Job } from "../class/job";
+import Person from "./class/person.js";
+import Example from "./class/example.js";
+import oclExpression from "./008.ocl?raw";
+import { Job } from "./class/job.js";
 
 const title = 'An under age person\'s income is the pocket money given by their parents.';
 const context = `
@@ -41,11 +41,11 @@ const fn = function () {
     child.parents.push(mother);
 
     return new OclEngine()
-        .addOclExpression(this.oclExpression)
+        .addOclExpression(oclExpression)
         .evaluate(child);
 };
 
-module.exports = Example.builder()
+export default () => Example.builder()
     .title(title)
     .context(context)
     .oclExpression(oclExpression)
